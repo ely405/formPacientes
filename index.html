@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Clínica Lab</title>
+</head>
+<body>
+  <div class="formPacientes">
+    <form id="formPatientData">
+      <label for="name">Nombre</label>
+      <input type="text" name="nombre" id="name" autofocus>
+      <br>
+      <label for="lastName">Apellido</label>
+      <input type="text" name="apellido" id="lastName">
+      <br>
+      <label for="yearOld">Edad</label>
+      <input type="number" name="edad" id="yearOld">
+      <br>
+      <label for="gender">Género</label>
+      <select name="gender" id="selectGender">
+        <option value="Seleciona">Selecciona</option>
+        <option value="femenino">Femenino</option>
+        <option value="masculino">Masculino</option>
+      </select>
+      <br>
+      <label for="city">Ciudad</label>
+      <input type="text" name="ciudad" id="city">
+      <br>
+      <label for="country">País</label>
+      <input type="text" name="pais" id="country">
+      <div>
+        <button type="submit" id="print">Imprimir</button>
+      </div>
+    </form>
+  </div>
+  <div id="listPatients"></div>
+  <script type="text/javascript" src="asstes/js/app.js"></script>
+</body>
+</html>
