@@ -4,38 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="asstes/css/main.css">
   <title>Clínica Lab</title>
 </head>
 <body>
+  <header>
+    <h1>Formulario Clínica LAB</h1>
+  </header>
   <div class="formPacientes">
     <form id="formPatientData">
       <label for="name">Nombre</label>
-      <input type="text" name="nombre" id="name" autofocus>
+      <input class="registryInput" type="text" name="nombre" id="name" autofocus>
+      <span></span>
       <br>
       <label for="lastName">Apellido</label>
-      <input type="text" name="apellido" id="lastName">
+      <input class="registryInput" type="text" name="apellido" id="lastName">
+      <span></span>
       <br>
       <label for="yearOld">Edad</label>
-      <input type="number" name="edad" id="yearOld">
+      <input class="registryInput" type="text" name="edad" id="yearOld">
+      <span></span>
       <br>
       <label for="gender">Género</label>
-      <select name="gender" id="selectGender">
-        <option value="Seleciona" hidden>Selecciona</option>
+      <select class="registryInput" name="gender" id="selectGender">
+        <option value="" hidden>Selecciona</option>
         <option value="femenino">Femenino</option>
         <option value="masculino">Masculino</option>
       </select>
+      <span></span>
       <br>
       <label for="city">Ciudad</label>
-      <input type="text" name="ciudad" id="city">
+      <input class="registryInput" type="text" name="ciudad" id="city">
+      <span></span>
       <br>
       <label for="country">País</label>
-      <input type="text" name="pais" id="country">
+      <input class="registryInput" type="text" name="pais" id="country">
+      <span></span>
       <div>
         <button type="submit" id="print">Imprimir</button>
       </div>
     </form>
   </div>
-  <div id="listPatients"></div>
+  <div id="listPatients">
+    <h3>Lista de pacientes</h3>
+  </div>
   <script type="text/javascript" src="asstes/js/app.js"></script>
 </body>
 </html>
