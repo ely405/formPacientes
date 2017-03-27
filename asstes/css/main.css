@@ -1,0 +1,35 @@
+h1{
+  font-family: -webkit-body;
+  color: deeppink;
+  background: antiquewhite;
+}
+
+form{
+  margin: 20px;
+  padding: 15px;
+  border-style: double;
+  border-color: darkmagenta;
+  border-width: thick;
+  width: 250px;
+  height: auto;
+  background: lightyellow;
+}
+
+form input{
+  margin: 3px;
+}
+
+fieldset{
+  display:inline-block;
+  margin: 20px;
+  padding: 10px;
+  border-style: outset;
+  border-color: palevioletred;
+  border-width: 3px;
+  color: darKblue;
+}
+
+form button{
+  display: block;
+  margin: 5px auto;
+}
