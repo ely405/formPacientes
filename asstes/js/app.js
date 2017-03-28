@@ -8,31 +8,16 @@ function NewPatient (nombre,apellido,edad,genero,ciudad,pais){
 }
 
 function validateLetters(event){
-  console.log(event);
-  console.log(event.target);
-  console.log(this.value.length);
   var arrInputLetter = [];
   var keyCode = event.keyCode;
-  console.log(keyCode);
-  if(keyCode >= 97 && keyCode <= 122 || keyCode >= 65 && keyCode <= 90 || keyCode == 39 || keyCode == 32){
-    event;
-    arrInputLetter = event.target.value.split(" ");
-    var mapingArr = arrInputLetter.map((element) => (element.charAt(0).toUpperCase() + element.slice(1,element.length)));
-    console.log(mapingArr);
-    event.target.value = mapingArr.toString().replace(",", " ");
-    console.log(event.target.value);
-  }else{
-    event.preventDefault();
-    this.nextElementSibling.innerText = "*Sólo ingrese letras*";
-  }
+  (keyCode >= 97 && keyCode <= 122 || keyCode >= 65 && keyCode <= 90 || keyCode == 39 || keyCode == 32)? event:(event.preventDefault(), this.nextElementSibling.innerText = "*Sólo ingrese letras*");
 }
 
 function validateOnlyNumber(event){
   var keyCode = event.keyCode;
-  console.log(keyCode);
-  (keyCode >= 48 && keyCode <= 57 && event.target.value.length < 2)?
-  event: (event.preventDefault(), event.target.nextElementSibling.innerText = "*Sólo ingresa números*");
+  (keyCode >= 48 && keyCode <= 57 && event.target.value.length < 2)? event: (event.preventDefault(), event.target.nextElementSibling.innerText = "*Sólo ingresa números*");
 }
+
 
 function createDiv(NewPatient){
   var lista = document.getElementById("listPatients");
@@ -51,23 +36,32 @@ function createDiv(NewPatient){
 }
 
 function lostFocus(event){
-  console.log("perdio foco");
-  console.log(event);
-  console.log(event.target.value.trim);
   console.log(event.target);
-  console.log(this.value);
   event.target.nextElementSibling.innerText = (event.target.value.trim().length == 0 || event.target == null)? "*Campo obligatorio*": "";
+  if(event.target.getAttribute("type") == "text"){
+    arrInputLetter = event.target.value.split(" ");
+    var mapingArr = arrInputLetter.map((element) => (element.charAt(0).toUpperCase() + element.substring(1, element.length).toLowerCase()));
+    event.target.value = mapingArr.toString().replace(",", " ");
+    console.log(event.target.value);
+  }
 }
 
 function validateFormContent(formInputs){
-  (formInputs.nombre.length == 0 || formInputs.nombre == null || !/\S/.test(formInputs.nombre))?
-  alert("completa"): (patientDataPrint.push(formInputs), createDiv(formInputs), allPatientData.unshift(formInputs));
+  var completeForm = document.getElementById("spnCompleteForm");
+  var form = document.getElementById("formPatientData");
+
+  if(formInputs.nombre.trim().length == 0 || formInputs.apellido.trim().length == 0 || formInputs.edad.trim().length == 0 || formInputs.genero == "" || formInputs.pais.trim().length == 0 || formInputs.ciudad.trim().length == 0){
+    completeForm.innerHTML = "Completa todos los campos";
+  }else{
+    completeForm.innerHTML = "";
+    //createDiv(formInputs);
+    console.log(formInputs);
+    localStorage.setItem("paciente", JSON.stringify(formInputs));
+    form.reset();
+    window.location.assign("paciente.html");
+  }
 }
 
-
-
-var allPatientData = [];
-var patientDataPrint = [];
 
 window.addEventListener("load", function(){
   var valNom = document.getElementById("name");
@@ -89,15 +83,15 @@ window.addEventListener("load", function(){
   ciudad.addEventListener("keypress", validateLetters);
   pais.addEventListener("keypress", validateLetters);
 
+
   for(var i = 0; i < registry.length; i++){
     registry[i].addEventListener("blur",lostFocus);
   }
 
   document.getElementById("print").addEventListener("click", function(){
     var newRegister = new NewPatient(valNom.value, lastName.value, edad.value, genero.value, ciudad.value, pais.value);
+    console.log(newRegister);
     validateFormContent(newRegister);
-    document.getElementById("formPatientData").reset();
     valNom.focus();
-    patientDataPrint.shift();
   })
 })
